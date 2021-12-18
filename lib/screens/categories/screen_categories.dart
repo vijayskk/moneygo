@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moneygo/db/categories/category_db_fns.dart';
 import 'package:moneygo/screens/categories/pages/expense_cat.dart';
 import 'package:moneygo/screens/categories/pages/income_cat.dart';
 
@@ -17,6 +18,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
   initState() {
     tabController = TabController(length: 2, vsync: this);
     super.initState();
+    CategoryDB().getCategories();
   }
 
   @override
@@ -39,7 +41,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
         Expanded(
             child: TabBarView(
           controller: tabController,
-          children: [IncomePage(), ExpensePage()],
+          children: const [IncomePage(), ExpensePage()],
         ))
       ],
     );
