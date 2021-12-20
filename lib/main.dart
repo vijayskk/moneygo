@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moneygo/models/categories/category_model.dart';
 import 'package:moneygo/screens/home/screen_home.dart';
@@ -12,6 +13,8 @@ void main() async {
   if (!Hive.isAdapterRegistered(CategoryTypeAdapter().typeId)) {
     Hive.registerAdapter(CategoryTypeAdapter());
   }
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: const ScreenHome(),
+      home: ScreenHome(),
     );
   }
 }

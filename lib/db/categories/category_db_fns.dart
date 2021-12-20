@@ -7,7 +7,7 @@ String _dbname = 'cats';
 abstract class CategoryDbFns {
   Future<void> insertCategory(CategoryModel value);
   Future<void> getCategories();
-  Future<void> deleteCategory(int id);
+  Future<void> deleteCategory(CategoryModel category);
 }
 
 class CategoryDB implements CategoryDbFns {
@@ -28,9 +28,10 @@ class CategoryDB implements CategoryDbFns {
   }
 
   @override
-  Future<void> deleteCategory(int id) async {
+  Future<void> deleteCategory(CategoryModel category) async {
     final _db = await Hive.openBox<CategoryModel>(_dbname);
-    _db.delete(id);
+    category.isDeleted = true;
+    _db.put(category.id, category);
     getCategories();
   }
 }

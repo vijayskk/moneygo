@@ -3,26 +3,34 @@ import 'package:moneygo/models/categories/category_model.dart';
 part 'transactions_model.g.dart';
 
 @HiveType(typeId: 2)
-class Transaction {
+class TransactionModel {
   @HiveField(0)
-  String? id;
+  int? id;
 
   @HiveField(1)
-  final double amound;
+  String name;
 
   @HiveField(2)
-  final CategoryModel category;
+  final double amound;
 
   @HiveField(3)
-  final bool isDeleted;
+  final CategoryModel category;
 
   @HiveField(4)
+  bool isDeleted;
+
+  @HiveField(5)
   final CategoryType type;
 
-  Transaction(
-      {required this.id,
+  @HiveField(6)
+  final DateTime date;
+
+  TransactionModel(
+      {this.id,
+      required this.name,
       required this.amound,
       required this.category,
       this.isDeleted = false,
-      required this.type});
+      required this.type,
+      required this.date});
 }

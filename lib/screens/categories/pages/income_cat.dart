@@ -23,7 +23,7 @@ class IncomePage extends StatelessWidget {
               trailing: IconButton(
                   onPressed: () {
                     print("test");
-                    CategoryDB().deleteCategory(element.id!);
+                    CategoryDB().deleteCategory(element);
                   },
                   icon: const Icon(Icons.delete)),
             ));
