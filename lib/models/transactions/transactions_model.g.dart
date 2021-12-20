@@ -17,7 +17,7 @@ class TransactionAdapter extends TypeAdapter<Transaction> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Transaction(
-      id: fields[0] as String,
+      id: fields[0] as String?,
       amound: fields[1] as double,
       category: fields[2] as CategoryModel,
       isDeleted: fields[3] as bool,

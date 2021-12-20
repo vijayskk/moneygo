@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:moneygo/db/categories/category_db_fns.dart';
+import 'package:moneygo/models/categories/category_model.dart';
 import 'package:moneygo/screens/categories/pages/expense_cat.dart';
 import 'package:moneygo/screens/categories/pages/income_cat.dart';
+
+ValueNotifier<List<CategoryModel>> categorieslist = ValueNotifier([]);
 
 class ScreenCategory extends StatefulWidget {
   const ScreenCategory({Key? key}) : super(key: key);
@@ -39,10 +42,23 @@ class _ScreenCategoryState extends State<ScreenCategory>
           ],
         ),
         Expanded(
-            child: TabBarView(
-          controller: tabController,
-          children: const [IncomePage(), ExpensePage()],
-        ))
+          child: ValueListenableBuilder(
+            valueListenable: categorieslist,
+            builder: (context, List<CategoryModel> value, child) {
+              return TabBarView(
+                controller: tabController,
+                children: [
+                  IncomePage(
+                    data: value,
+                  ),
+                  ExpensePage(
+                    data: value,
+                  )
+                ],
+              );
+            },
+          ),
+        )
       ],
     );
   }

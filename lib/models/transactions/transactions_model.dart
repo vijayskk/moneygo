@@ -5,7 +5,7 @@ part 'transactions_model.g.dart';
 @HiveType(typeId: 2)
 class Transaction {
   @HiveField(0)
-  final String id;
+  String? id;
 
   @HiveField(1)
   final double amound;
