@@ -2,7 +2,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moneygo/models/transactions/transactions_model.dart';
 import 'package:moneygo/screens/transactions/screen_transactions.dart';
 
-String _dbname = 'cats';
+String _dbname = 'trans';
 
 abstract class TransactionsDBFns {
   Future<void> addTransaction(TransactionModel transaction);
